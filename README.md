@@ -181,3 +181,12 @@ The UI would then allow the user to:
 Choose which version to keep (local/server),
 Or edit and save a merged version.
 Until a resolution is made, the note would be marked with a conflict: true flag in local storage and on the server (once implemented), to avoid accidental overwrites.
+
+Dashboard
+![alt text](image.png)
+
+Add Note Form
+![alt text](image-1.png)
+
+Filter 
+![alt text](image-2.png)
