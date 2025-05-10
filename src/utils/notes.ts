@@ -166,7 +166,7 @@ export async function updateEditedNote(serverNote: Note, localNotes: Note[]) {
   const matchingLocalNote = localNotes.find((localNote: Note) => localNote._id === serverNote._id);
   if (matchingLocalNote !== undefined) {
     if (matchingLocalNote.localEditSynced === false) {
-      // console.log("conflict detected");
+      console.log("conflict detected");
       await axios.put(`/api/edit-note?id=${matchingLocalNote._id}`, { title: matchingLocalNote.title });
       matchingLocalNote.localEditSynced = undefined;
       await editOfflineNote(matchingLocalNote);
@@ -190,8 +190,8 @@ export async function refreshNotes() {
       const localNotes = await getOfflineNotes();
       const response = await axios.get('/api/notes');
       const serverNotes = response.data;
-      console.log("serverNotes ", serverNotes)
-      console.log("localNotes ", localNotes)
+      // console.log("serverNotes ", serverNotes)
+      // console.log("localNotes ", localNotes)
 
       for (const localNote of localNotes) {
         if (localNote.localDeleteSynced === false) {

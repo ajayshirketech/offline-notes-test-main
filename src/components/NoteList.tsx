@@ -85,8 +85,8 @@ const NoteList = () => {
   );
 
   const handleEditNote = useCallback(async (note: Note) => {
-    console.log("handleEditNote", note);
-    console.log("allNotes", allNotes);
+    // console.log("handleEditNote", note);
+    // console.log("allNotes", allNotes);
     // const noteToEdit = allNotes.find((note) => note._id?.toString() === String(noteId));
     setSelectedNote(note);
     setAddNotePopupVisible(true);

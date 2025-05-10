@@ -1,7 +1,7 @@
 import { query } from "../../utils/db";
 
 export default async function handler(req, res) {
-  console.log("Inside GET notes API");
+  // console.log("Inside GET notes API");
   if (req.method === 'GET') {
     try {
       // TODO: Implement logic to fetch notes from your chosen data store (e.g., MongoDB, PostgreSQL, JSON file).

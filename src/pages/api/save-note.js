@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         'INSERT INTO public.notes (title, content, "localId", "createdAt", _id, tags) VALUES ($1, $2, $3, $4, $5, $6) RETURNING _id',
         [noteData.title, noteData.content, noteData.localId, noteData.createdAt, noteData.localId, noteData.tags]
       );
-      console.log('Inserted note:', result);
+      // console.log('Inserted note:', result);
       
       const insertedId = noteData.localId; // Placeholder: Use localId as temporary example ID
 

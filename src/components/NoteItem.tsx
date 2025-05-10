@@ -19,7 +19,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
   onDeleteNote,
   onEditNote,
 }) => {
-  console.log("NoteItem", note);
+  // console.log("NoteItem", note);
   const [isSyncing, setSyncing] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(note.title);

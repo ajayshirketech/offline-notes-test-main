@@ -128,9 +128,19 @@ But we cant state that Postgres is absolute perfect choice for it, mongoDb would
 
 2.  **Clone/Fork:**
     ```bash
-    git clone https://github.com/ksajalk1/offline-notes-test
+    git clone https://github.com/ajayshirketech/offline-notes-test-main.git
     cd offline-notes-test
     ```
+
+    Create .env file
+    Add these variables
+
+        POSTGRES_USER=postgres
+        POSTGRES_PASSWORD=root
+        POSTGRES_HOST=localhost
+        POSTGRES_DATABASE=postgres
+        POSTGRES_PORT=5432
+
 3.  **Install Dependencies:**
     ```bash
     npm install
@@ -145,4 +155,29 @@ But we cant state that Postgres is absolute perfect choice for it, mongoDb would
     ```
     Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-<!--  -->
+<!-- Integrated Tags Storage -->
+
+I Simply made a table in Db Store named "tags" if doesnt exist, kept few tagname in it, user can also add custom tags in table, while in offline mode user select predifined tags and once online note get sync to Db
+
+
+<!-- Conflict Detection logic -->
+
+In the refreshNotes function, I identify conflicting notes by comparing the local version of a note with the latest version from the server. Specifically, I look for notes where:
+
+localNote.localEditSynced === false: This indicates that the note has been edited locally and hasn't been synced with the server yet.
+
+I then find the corresponding server note using _id and compare the server note's title with the lastSyncedTitle stored in the local note.
+
+If there's a mismatch between the lastSyncedTitle and the current title on the server, it suggests that both the client and the server have diverged since the last sync, indicating a conflict.
+
+
+<!-- Conflict Resolution Strategy -->
+
+In the event of a detected conflict, I propose a manual resolution strategy where the user is presented with both versions of the note:
+Server version: The latest version from the server.
+Local version: The user's unsynced edits.
+Optionally, a merged suggestion can be generated automatically to assist the user.
+The UI would then allow the user to:
+Choose which version to keep (local/server),
+Or edit and save a merged version.
+Until a resolution is made, the note would be marked with a conflict: true flag in local storage and on the server (once implemented), to avoid accidental overwrites.
